@@ -1,0 +1,411 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(175, 42, 169, 0.272);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 300px;
+    margin: 90px auto;
+    padding: 20px;
+    background-color:rgb(150, 108, 165) ;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(198, 5, 236, 0.1);
+    
+}
+
+.container h2 {
+    text-align: center;
+    font-family:'Lucida Sans';
+    color:#07030a99;
+    
+}
+
+.container label {
+    display: block;
+    color: #080101;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.container input[type=text],
+.container input[type=email],
+.container input[type=password] {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #1e013d;
+    border-radius: 40px;
+    font-size: 14px;
+}
+
+.container button {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #07030a99;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background-color: #3e354399;
+}
+
+/* .container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container th, .container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.container th {
+    background-color: #f2f2f2;
+}
+
+.container td {
+    vertical-align: top;
+}
+
+.container tr:hover {
+    background-color: #f2f2f2;
+} */
+
+.link {
+    display: inline-block; 
+    color: #1c0d27; 
+    font-size: 13px; 
+    font-weight: bold; 
+    text-align: center; 
+    padding: 8px 32px; 
+    /* border-radius: 4px;  */
+    transition: color 0.3s, background-color 0.3s; 
+}
+.link:hover {
+    color: #3b444c;
+    text-decoration: underline; 
+    /* background-color: rgba(1, 7, 14, 0.1);  */
+}
+
+.link1 {
+    display: inline-block; 
+    color: #1c0d27; 
+    font-size: 13px; 
+    font-weight: bold; 
+    text-align: center; 
+    padding: 8px 90px; 
+    /* border-radius: 4px;  */
+    transition: color 0.3s, background-color 0.3s; 
+}
+.link1:hover {
+    color: #3b444c;
+    text-decoration: underline; 
+    /* background-color: rgba(1, 7, 14, 0.1);  */
+}
+.link2 {
+    display: inline-block; 
+    color: #1c0d27; 
+    font-size: 13px; 
+    font-weight: bold; 
+    text-align: center; 
+    padding: 8px 130px; 
+    /* border-radius: 4px;  */
+    transition: color 0.3s, background-color 0.3s; 
+}
+.link2:hover {
+    color: #3b444c;
+    text-decoration: underline; 
+    /* background-color: rgba(1, 7, 14, 0.1);  */
+}
+.link3 {
+    display: inline; 
+    color: #1c0d27; 
+    font-size: 13px; 
+    font-weight: bold; 
+    text-align: center; 
+    padding: 5px 450px; 
+    /* left: 450px; */
+    /* border-radius: 4px;  */
+    transition: color 0.3s, background-color 0.3s; 
+}
+.link3:hover {
+    color: #3b444c;
+    text-decoration: underline; 
+    /* background-color: rgba(1, 7, 14, 0.1);  */
+}
+
+/* */
+.container2 {
+    width: 100%;
+    max-width: 1000px;
+    margin: 90px auto;
+    padding: 20px;
+    background-color:rgb(150, 108, 165) ;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(198, 5, 236, 0.1);
+    
+}
+
+.container2 h2 {
+    text-align: center;
+    font-family:'Lucida Sans';
+    color:#07030a99;
+    
+}
+
+.container2 label {
+    display: block;
+    color: #000000;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+
+.container2 input[type=password] {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 40%;
+    padding: 10px;
+    background-color: rgb(155, 153, 153);
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 40px;
+    font-size: 18px;
+}
+
+.add-entry-btn {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    display: block;
+    text-align: center;
+    /* width: 15%; */
+    padding: 10px 20px;
+    margin: 10px 0px;
+    background-color: #07030a99;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    position :absolute;
+    right:140px;
+    top:160px;
+}
+
+
+.container2 button:hover {
+    background-color: #3e354399;
+}
+
+.container2 table {
+    width: 100%;
+    height: 6px;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border: 1.5px solid #150505;
+    font-size: 12px;
+    padding: 8px;
+    text-align: center;
+
+}
+
+.container2 th, .container2 td {
+    border: 1.5px solid #150505;
+    /* overflow: hidden; */
+    /* white-space: nowrap; */
+    padding: 2px 2px;
+    text-align: center;
+}
+
+.container2 th {
+    background-color: #f2f2f2;
+
+}
+
+.container2 td {
+    vertical-align: center;
+    background-color: rgb(155, 153, 153);
+    
+}
+
+table th:nth-child(1), td:nth-child(1) {
+    width:1%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table th:nth-child(2), td:nth-child(2) {
+    width:8%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table th:nth-child(3), td:nth-child(3) {
+    width:10%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+table th:nth-child(4), td:nth-child(4) {
+    width:12%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+table th:nth-child(5), td:nth-child(5) {
+    width:15%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table th:nth-child(6), td:nth-child(6) {
+    width:15%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table th:nth-child(7), td:nth-child(7) {
+    width:2%;
+}
+
+
+
+.notes-label:hover::after {
+    content: attr(data-notes); /* Show full content */
+    position: absolute;
+    bottom: 30%;
+    left: 60%;
+    background-color: rgb(190, 182, 182);
+    color: #0d002c;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: normal;
+    z-index: 1000;
+    overflow-wrap: break-word;
+    width: 300px; 
+    max-width: 300px; 
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1); 
+    font-size: 12px;
+    text-align: center;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 10px;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    white-space: nowrap; /* Prevent wrapping of buttons */
+}
+
+.dropdown-content button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    display: inline-flex; /* Align items in a row */
+    align-items: center;
+}
+
+/* .add-entry-btn{
+    position :absolute;
+    right:140px;
+    top:160px;
+} */
+
+/* Icon button styles */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    width: 60%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.icon-button:hover {
+    color: #060c12; /* Dark text/icon color on hover */
+    background-color: transparent; /* No background color on hover */
+}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: flex; /* Use flexbox to align items horizontally */
+}
+
+.dropbtn {
+    color:black;
+    background-color: transparent;
+    border-radius: 50%;
+}
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-label {
+    width: calc(100% - 40px); 
+    padding-right: 40px; 
+    background: transparent; 
+    border: none; 
+    color: black; 
+    line-height: 1.5; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+}
+
+
+#entries-table {
+    width: 100%; /* Ensure the table takes up the full width of the container */
+    table-layout: fixed; /* Ensure table columns have a fixed width */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+
+#entries-table th, #entries-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Add a border for better readability */
+}
+
+.notes-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+

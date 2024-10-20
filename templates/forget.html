@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forget Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Forget Password</h2><br>
+        <input type="email" id="email" required placeholder="Email ID"><br><br>
+        <button onclick="confirmEmail()">Confirm</button>
+        <div class="links">
+            <a href="{{ url_for('main') }}" class="link2">Back</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

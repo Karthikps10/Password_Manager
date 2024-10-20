@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD NEW ENTRY</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add New Entry</h2>
+    <form action="{{ url_for('add') }}" method="post">
+        <!-- <label for="site">Site:</label> -->
+        <input type="text" id="site" name="site" placeholder="Title" required><br>
+        <!-- <label for="username">Username:</label> -->
+        <input type="text" id="username" name="username" placeholder="Username" required><br>
+        <!-- <label for="password">Password:</label> -->
+        <input type="password" id="password" name="password" placeholder="Password" required><br>
+        <input type="text" id="link" name="link" placeholder="Link"><br>
+        <input type="text" id="notes" name="notes" placeholder="Notes"><br><br>
+        <button onclick="generate()">Generate password</button>
+        <button onclick="new_entry()">Submit</button>
+    </form>
+    <a href="{{ url_for('main') }}" class="link2">Back</a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

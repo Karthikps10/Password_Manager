@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/5d22330695.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container2">
+        <h2>Password Manager</h2>
+        <h4>Saved Entries</h4>
+        <button class="add-entry-btn" onclick="add()">ADD ENTRY</button>
+        <table id="entries-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Link</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if entries %}
+                    {% for entry in entries %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry[0] }}</td>
+                        <td>{{ entry[1] }}</td>
+                        <td>
+                            <div class="password-container">
+                                <label id="password-label-{{ loop.index }}" class="password-label">.............</label>
+                                <input type="hidden" id="password-hidden-{{ loop.index }}" value="{{ entry[2] }}">
+                            </div>
+                         </td>
+                        <td>{{ entry[3] }}</td>
+                        <td><div class="notes-container">
+                            <span class="notes-label" data-notes="{{ entry[4] }}">{{ entry[4] }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="dropbtn">i</button>
+                                <div class="dropdown-content">
+                                    <button class="password-toggle" onclick="togglePasswordVisibility('{{ loop.index }}')">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                    <button class="icon-button" onclick="editEntry('{{ entry[0] }}', '{{ entry[1] }}', '{{ entry[2] }}','{{ entry[3]}}')">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="icon-button" onclick="deleteEntry('{{ entry[0] }}')">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                    <button class="icon-button" onclick="copyToClipboard('{{ entry[1] }}')">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <button class="icon-button" onclick="copyToClipboard('{{ entry[2] }}')">
+                                        <i class="fa-solid fa-key"></i>
+                                    </button>
+                                    <button class="icon-button" onclick="openLink('{{ entry[3] }}')">
+                                        <i class="fa-solid fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="7">No entries found</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}" class="link3">Log out</a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

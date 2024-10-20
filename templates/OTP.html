@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Authentication</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>OTP Authentication</h2><br>
+        <input type="text" id="otp" required placeholder="Enter OTP"><br><br>
+        <button onclick="verify()">Verify OTP</button>
+        <div class="links">
+            <a href="{{ url_for('index') }}" class="link2">Back</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
