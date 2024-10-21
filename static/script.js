@@ -1,4 +1,3 @@
-
 // Function to handle user registration
 function register() {
     const email = document.getElementById('email').value;
@@ -297,6 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return password;
     }
+    
 
     generateBtn.addEventListener('click', function() {
         const password = generatePassword();
@@ -310,3 +310,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+// Assuming OTP is valid for 3 minutes
+const otpValidityDuration = 3 * 60; // 3 minutes in seconds
+let remainingTime = otpValidityDuration;
+
+const timerElement = document.getElementById('timer');
+
+const updateTimer = () => {
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
+    timerElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    if (remainingTime <= 0) {
+        clearInterval(timerInterval);
+        timerElement.textContent = 'OTP has expired';
+    } else {
+        remainingTime--;
+    }
+};
+
+const timerInterval = setInterval(updateTimer, 1000);
