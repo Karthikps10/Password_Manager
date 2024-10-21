@@ -408,4 +408,8 @@ table th:nth-child(7), td:nth-child(7) {
     text-overflow: ellipsis;
 }
 
-
+.timer {
+    margin-top: -3px; /* Space above timer */
+    text-align: center; /* Center align timer text */
+    font-size: 12px;
+}
