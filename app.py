@@ -6,6 +6,8 @@ from email.mime.text import MIMEText
 import sqlite3
 import random
 import string
+import time
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key' 
@@ -100,9 +102,9 @@ def login():
             otp = ''.join(random.choices(string.digits, k=6))
             session['otp'] = otp
             session['email'] = email
+            # session['otp_time'] = time.time() 
             send_otp(email, otp)
             return jsonify({'message': 'OTP sent successfully'}), 200           
-
         else:
             return jsonify({'message': 'Invalid email or password'}), 401
 
@@ -152,28 +154,38 @@ def send_otp(email, otp):
     msg['From'] = FROM_EMAIL
     msg['To'] = email
     msg.attach(MIMEText(MESSAGE, 'plain'))
-
+    print("OTP")
     try:
         with smtplib.SMTP(HOST, PORT) as smtp:
             smtp.starttls()
             smtp.login(FROM_EMAIL, PASSWORD)
             smtp.sendmail(FROM_EMAIL, email, msg.as_string())
+        print("OTP2")
     except Exception as e:
         print(f"Failed to send OTP: {str(e)}")
 
 @app.route('/verify', methods=['POST'])
 def verify():
     data = request.get_json()
-    # email = data.get('email')
     otp = data.get('otp')
-    print(otp)
+
+    if not otp:
+        return jsonify({'message': 'OTP is required'}), 400
+
+    current_time = time.time()
+    otp_time = session.get('otp_time')
+
     if otp == session.get('otp'):
-        print(otp , session.get('otp'))
-        main()
-        return jsonify({'message': 'OTP verified successfully'}), 200
+        if otp_time and (current_time - otp_time <= 180):  # 3 minutes in seconds
+            print(otp, session.get('otp'))
+            main()  # Call your main function here
+            return jsonify({'message': 'OTP verified successfully'}), 200
+        else:
+            print(otp, session.get('otp'))
+            return jsonify({'message': 'OTP has expired. Log In again'}), 403
     else:
         print(otp, session.get('otp'))
-        return jsonify({'message': 'Invalid OTP or email'}), 400
+        return jsonify({'message': 'Invalid OTP'}), 400
 
 # ##############
 @app.route('/reset')
@@ -204,17 +216,17 @@ def reset_pass():
         else:
             return jsonify({'message': 'Invalid Email or Password'}), 401
 ##############
-
-@app.route('/main')
+@app.route('/main1')
 def main():
     email = session.get('email')
     if not email:
         return redirect(url_for('index'))
 
+
     # Construct the user database filename
     user_db_name = f'{email.replace("@", "_").replace(".", "_")}.db'
     print(f'User DB Name: {user_db_name}')
-
+    print(f'Attempting to connect to: {user_db_name}')
     # Check if the database file exists
     if not os.path.exists(user_db_name):
         return render_template('error.html', message='User database does not exist'), 404
@@ -225,40 +237,56 @@ def main():
             cursor = user_db.cursor()
             cursor.execute('SELECT site, username, password, link, notes FROM user_data')
             entries = cursor.fetchall()
+            print(f'Attempting to connect to2: {user_db_name}')
     except sqlite3.Error as e:
         print(f"Database error: {e}")
-        return render_template('error.html', message='Database error occurred'), 500
+        print(f'Attempting to connect to3: {user_db_name}')
 
-    # Render the template with entries
+    print(f'Entries to render: {entries}')
     
     return render_template('main.html', entries=entries)
+
+
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        site = request.form['site']
-        username = request.form['username']
-        password = request.form['password']
-        link = request.form['link']
-        notes = request.form['notes']
-        
+        # Extract form data from the request
+        site = request.form.get('site')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        link = request.form.get('link')
+        notes = request.form.get('notes')
+
+        # Check if the user is logged in
         email = session.get('email')
         if not email:
-            return redirect(url_for('index'))
+            flash('User not logged in. Please log in first.', 'error')
+            return redirect(url_for('index'))  # Redirect to index or login page
         
+        # Construct the user database filename
         user_db_name = f'{email.replace("@", "_").replace(".", "_")}.db'
-        print("add")
-        print(user_db_name)
         if not os.path.exists(user_db_name):
-            return jsonify({'message': 'User database does not exist'}), 404
+            flash('User database does not exist.', 'error')
+            return redirect(url_for('index'))  # Redirect if database is missing
         
-        with sqlite3.connect(user_db_name) as user_db:
-            user_db.execute('INSERT INTO user_data (site, username, password, link, notes) VALUES (?, ?, ?, ?, ?)',
-                            (site, username, password, link, notes))
-        
-        return redirect(url_for('main'))
+        try:
+            # Insert the new entry into the user database
+            with sqlite3.connect(user_db_name) as user_db:
+                user_db.execute('INSERT INTO user_data (site, username, password, link, notes) VALUES (?, ?, ?, ?, ?)',
+                                (site, username, password, link, notes))
+                user_db.commit()  # Commit the transaction
+            print('susces')
+            flash('Entry added successfully!', 'success')
+            return redirect(url_for('main'))  # Redirect to the main page
+        except sqlite3.Error as e:
+            print(f"Database error: {e}")
+            flash('Database error occurred. Please try again.', 'error')
+            return redirect(url_for('main'))  # Redirect to the main page on error
 
+    # If the request is GET, render the add entry form
     return render_template('add.html')
+
 ################################
 
 @app.route('/edit_entry', methods=['POST'])
@@ -322,4 +350,3 @@ def copy_to_clipboard():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
