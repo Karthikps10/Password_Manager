@@ -8,9 +8,10 @@
 </head>
 <body>
     <div class="container">
-        <h2>OTP Authentication</h2><br>
-        <input type="text" id="otp" required placeholder="Enter OTP"><br><br>
+        <h2>OTP Authentication</h2><br>c
+        <input type="text" id="otp" required placeholder="Enter OTP"><br>
         <button onclick="verify()">Verify OTP</button>
+        <div id="timer" class="timer"></div>
         <div class="links">
             <a href="{{ url_for('index') }}" class="link2">Back</a>
         </div>
