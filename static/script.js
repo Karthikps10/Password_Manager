@@ -24,7 +24,7 @@ function register() {
     .then(data => {
         alert(data.message);
         if (data.success) {
-            window.location.href = '/'; // Redirect to login page
+            window.location.href = '/'; 
         }
     })
     .catch(error => {
@@ -53,7 +53,7 @@ function login() {
     .then(response => response.json())
     .then(data => {
         if (data.message === 'OTP sent successfully') {
-            window.location.href = '/OTP'; // Redirect to OTP page
+            window.location.href = '/OTP'; 
             //alert(data.message);
         } else {
             alert(data.message);
@@ -115,8 +115,8 @@ function confirmEmail() {
     .then(response => response.json())
     .then(data => {
         alert(data.message);
-        if (data.message === 'Password shared to email') {
-            alert('Please reset your password to continue')
+        if (data.message === 'Password shared to email.') {
+            alert('Please reset your password to continue.')
             window.location.href = '/reset';
         }
         else{
@@ -216,7 +216,7 @@ function editEntry(site, username, password, link, notes) {
         .then(data => {
             if (data.status === 'success') {
                 //alert('Entry updated successfully!');
-                location.reload(); // Reload the page to reflect changes
+                location.reload(); 
             } else {
                 alert('Error updating entry: ' + data.message);
             }
@@ -240,7 +240,7 @@ function deleteEntry(site) {
         .then(data => {
             if (data.status === 'success') {
                 //alert('Entry deleted successfully!');
-                location.reload(); // Reload the page to reflect changes
+                location.reload(); 
             } else {
                 alert('Error deleting entry: ' + data.message);
             }
@@ -251,13 +251,13 @@ function deleteEntry(site) {
 function copyToClipboard(text) {
     // Create a temporary textarea element
     const textArea = document.createElement('textarea');
-    textArea.value = text;  // Set the text to be copied
-    document.body.appendChild(textArea);  // Append it to the body
+    textArea.value = text;  
+    document.body.appendChild(textArea);  
 
-    textArea.select();  // Select the text in the textarea
-    document.execCommand('copy');  // Execute the copy command
-    document.body.removeChild(textArea);  // Remove the textarea from the document
-    alert('Copied to clipboard!');  // Notify the user
+    textArea.select(); 
+    document.execCommand('copy');  
+    document.body.removeChild(textArea);  
+    alert('Copied to clipboard!'); 
 }
 
 function openLink(url) {
