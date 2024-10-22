@@ -9,6 +9,8 @@ import string
 import time
 
 app = Flask(__name__)
+app.secret_key = 'mycode'
+
 HOST = "smtp.gmail.com"
 PORT = 587
 FROM_EMAIL = "awsiamuserpwd@gmail.com"
