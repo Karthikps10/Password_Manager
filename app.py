@@ -8,10 +8,7 @@ import random
 import string
 import time
 
-
 app = Flask(__name__)
-app.secret_key = 'your_secret_key' 
-
 HOST = "smtp.gmail.com"
 PORT = 587
 FROM_EMAIL = "awsiamuserpwd@gmail.com"
@@ -33,6 +30,7 @@ init_db()
 
 @app.route('/')
 def index():
+    session.clear()
     return render_template('index.html')
 
 @app.route('/register')
@@ -41,23 +39,24 @@ def register():
 
 @app.route('/OTP')
 def otp():
+
+    if session.get('otp_verified'):  
+        return redirect(url_for('index'))  
+    
+    email = session.get('email')
+    if not email:
+        return redirect(url_for('index'))
     return render_template('OTP.html')
 
 @app.route('/forget')
 def forget():
     return render_template('forget.html')
 
-
-@app.route('/main')
-def verification():
-    return render_template('main.html')
-
-@app.route('/add')
-def add_entry():
-    return render_template('add.html')
-
 @app.route('/generate')
 def generate():
+    email = session.get('email')
+    if not email:
+        return redirect(url_for('index'))
     return render_template('generate.html')
 
 @app.route('/update', methods=['POST'])
@@ -83,7 +82,6 @@ def confirmEmail():
         else:
             return jsonify({'message': 'Invalid. Please register'}), 401
 
-
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -102,8 +100,9 @@ def login():
             otp = ''.join(random.choices(string.digits, k=6))
             session['otp'] = otp
             session['email'] = email
-            # session['otp_time'] = time.time() 
+            session['otp_time'] = time.time() 
             send_otp(email, otp)
+            print(otp)
             return jsonify({'message': 'OTP sent successfully'}), 200           
         else:
             return jsonify({'message': 'Invalid email or password'}), 401
@@ -120,7 +119,6 @@ def register_user():
     
     if len(password) < 6:
         return jsonify({'message': 'Password must be at least 6 characters long'}), 400
-
 
     with sqlite3.connect('Users.db') as connect:
         cursor = connect.cursor()
@@ -154,19 +152,18 @@ def send_otp(email, otp):
     msg['From'] = FROM_EMAIL
     msg['To'] = email
     msg.attach(MIMEText(MESSAGE, 'plain'))
-    print("OTP")
     try:
         with smtplib.SMTP(HOST, PORT) as smtp:
             smtp.starttls()
             smtp.login(FROM_EMAIL, PASSWORD)
             smtp.sendmail(FROM_EMAIL, email, msg.as_string())
-        print("OTP2")
     except Exception as e:
         print(f"Failed to send OTP: {str(e)}")
 
 @app.route('/verify', methods=['POST'])
 def verify():
     data = request.get_json()
+    # email = data.get('email')
     otp = data.get('otp')
 
     if not otp:
@@ -176,18 +173,19 @@ def verify():
     otp_time = session.get('otp_time')
 
     if otp == session.get('otp'):
-        if otp_time and (current_time - otp_time <= 180):  # 3 minutes in seconds
+        if otp_time and (current_time - otp_time <= 180):  
             print(otp, session.get('otp'))
-            main()  # Call your main function here
+            session['otp_verified'] = True
+            main()  
             return jsonify({'message': 'OTP verified successfully'}), 200
         else:
             print(otp, session.get('otp'))
+
             return jsonify({'message': 'OTP has expired. Log In again'}), 403
     else:
         print(otp, session.get('otp'))
         return jsonify({'message': 'Invalid OTP'}), 400
 
-# ##############
 @app.route('/reset')
 def reset():
     return render_template('reset.html')
@@ -215,24 +213,20 @@ def reset_pass():
             return jsonify({'message': 'Password updated'}), 200
         else:
             return jsonify({'message': 'Invalid Email or Password'}), 401
-##############
+
 @app.route('/main1')
 def main():
     email = session.get('email')
     if not email:
         return redirect(url_for('index'))
-
-
-    # Construct the user database filename
+    
     user_db_name = f'{email.replace("@", "_").replace(".", "_")}.db'
     print(f'User DB Name: {user_db_name}')
     print(f'Attempting to connect to: {user_db_name}')
-    # Check if the database file exists
     if not os.path.exists(user_db_name):
         return render_template('error.html', message='User database does not exist'), 404
 
     try:
-        # Connect to the user database
         with sqlite3.connect(user_db_name) as user_db:
             cursor = user_db.cursor()
             cursor.execute('SELECT site, username, password, link, notes FROM user_data')
@@ -247,47 +241,42 @@ def main():
     return render_template('main.html', entries=entries)
 
 
-
 @app.route('/add', methods=['GET', 'POST'])
 def add():
+    # Check if the user is logged in
+    email = session.get('email')
+    print(email)
+    if not email:
+        return redirect(url_for('index')) 
+    
     if request.method == 'POST':
-        # Extract form data from the request
+
         site = request.form.get('site')
         username = request.form.get('username')
         password = request.form.get('password')
         link = request.form.get('link')
         notes = request.form.get('notes')
-
-        # Check if the user is logged in
-        email = session.get('email')
-        if not email:
-            flash('User not logged in. Please log in first.', 'error')
-            return redirect(url_for('index'))  # Redirect to index or login page
         
         # Construct the user database filename
         user_db_name = f'{email.replace("@", "_").replace(".", "_")}.db'
         if not os.path.exists(user_db_name):
             flash('User database does not exist.', 'error')
-            return redirect(url_for('index'))  # Redirect if database is missing
+            return redirect(url_for('index')) 
         
         try:
             # Insert the new entry into the user database
             with sqlite3.connect(user_db_name) as user_db:
                 user_db.execute('INSERT INTO user_data (site, username, password, link, notes) VALUES (?, ?, ?, ?, ?)',
                                 (site, username, password, link, notes))
-                user_db.commit()  # Commit the transaction
+                user_db.commit()  
             print('susces')
             flash('Entry added successfully!', 'success')
-            return redirect(url_for('main'))  # Redirect to the main page
+            return redirect(url_for('main'))  
         except sqlite3.Error as e:
             print(f"Database error: {e}")
             flash('Database error occurred. Please try again.', 'error')
-            return redirect(url_for('main'))  # Redirect to the main page on error
-
-    # If the request is GET, render the add entry form
+            return redirect(url_for('main')) 
     return render_template('add.html')
-
-################################
 
 @app.route('/edit_entry', methods=['POST'])
 def edit_entry():
@@ -349,4 +338,6 @@ def copy_to_clipboard():
     return jsonify({'status': 'success', 'message': 'Text to be copied'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run( host ='0.0.0.0', port = 8000)
+
+
