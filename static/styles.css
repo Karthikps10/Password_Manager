@@ -323,6 +323,7 @@ table th:nth-child(7), td:nth-child(7) {
 
 .dropdown:hover .dropdown-content {
     display: flex; 
+}
 
 .dropbtn {
     color:black;
