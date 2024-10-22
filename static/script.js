@@ -54,7 +54,7 @@ function login() {
     .then(data => {
         if (data.message === 'OTP sent successfully') {
             window.location.href = '/OTP'; // Redirect to OTP page
-            alert(data.message);
+            //alert(data.message);
         } else {
             alert(data.message);
         }
@@ -83,10 +83,12 @@ function verify() {
     })
     .then(response => response.json())
     .then(data => {
-        alert(data.message);
+        //alert(data.message);
         if (data.message === 'OTP verified successfully') {
             //
-            window.location.href = '/main';
+            window.location.href = '/main1';
+        } else if (data.message === "OTP has expired. Log In again") {
+            window.location.href = '/';
         }
     })
     .catch(error => {
@@ -134,6 +136,7 @@ function reset(){
     window.location.href = '/reset';
 }
 
+// Function to handle reset_password
 function reset_password() {
     const email = document.getElementById('email').value;
     const new_password = document.getElementById('new_password').value;
@@ -212,7 +215,7 @@ function editEntry(site, username, password, link, notes) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                alert('Entry updated successfully!');
+                //alert('Entry updated successfully!');
                 location.reload(); // Reload the page to reflect changes
             } else {
                 alert('Error updating entry: ' + data.message);
@@ -236,7 +239,7 @@ function deleteEntry(site) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                alert('Entry deleted successfully!');
+                //alert('Entry deleted successfully!');
                 location.reload(); // Reload the page to reflect changes
             } else {
                 alert('Error deleting entry: ' + data.message);
@@ -245,24 +248,23 @@ function deleteEntry(site) {
     }
 }
 
-// Copy to Clipboard
 function copyToClipboard(text) {
-    navigator.clipboard.writeText(text)
-        .then(() => {
-            alert('Copied to clipboard!');
-        })
-        .catch(err => {
-            console.error('Failed to copy: ', err);
-        });
+    // Create a temporary textarea element
+    const textArea = document.createElement('textarea');
+    textArea.value = text;  // Set the text to be copied
+    document.body.appendChild(textArea);  // Append it to the body
+
+    textArea.select();  // Select the text in the textarea
+    document.execCommand('copy');  // Execute the copy command
+    document.body.removeChild(textArea);  // Remove the textarea from the document
+    alert('Copied to clipboard!');  // Notify the user
 }
 
 function openLink(url) {
     if (url !== ''){
         window.open(url, '_blank');
     }
-    
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     const generateBtn = document.getElementById('generate-btn');
@@ -306,13 +308,13 @@ document.addEventListener('DOMContentLoaded', function() {
     copyBtn.addEventListener('click', function() {
         passwordInput.select();
         document.execCommand('copy');
-        alert('Password copied to clipboard');
+        //alert('Password copied to clipboard');
     });
 });
 
 
-// Assuming OTP is valid for 3 minutes
-const otpValidityDuration = 3 * 60; // 3 minutes in seconds
+
+const otpValidityDuration = 3 * 60;
 let remainingTime = otpValidityDuration;
 
 const timerElement = document.getElementById('timer');
@@ -324,7 +326,8 @@ const updateTimer = () => {
 
     if (remainingTime <= 0) {
         clearInterval(timerInterval);
-        timerElement.textContent = 'OTP has expired';
+        timerElement.textContent = 'OTP has expired. Returning to Login page';
+        window.location.href = '/';
     } else {
         remainingTime--;
     }
