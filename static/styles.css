@@ -65,29 +65,6 @@ body {
     background-color: #3e354399;
 }
 
-/* .container table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.container th, .container td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.container th {
-    background-color: #f2f2f2;
-}
-
-.container td {
-    vertical-align: top;
-}
-
-.container tr:hover {
-    background-color: #f2f2f2;
-} */
-
 .link {
     display: inline-block; 
     color: #1c0d27; 
@@ -95,13 +72,12 @@ body {
     font-weight: bold; 
     text-align: center; 
     padding: 8px 32px; 
-    /* border-radius: 4px;  */
     transition: color 0.3s, background-color 0.3s; 
 }
+
 .link:hover {
     color: #3b444c;
     text-decoration: underline; 
-    /* background-color: rgba(1, 7, 14, 0.1);  */
 }
 
 .link1 {
@@ -117,8 +93,8 @@ body {
 .link1:hover {
     color: #3b444c;
     text-decoration: underline; 
-    /* background-color: rgba(1, 7, 14, 0.1);  */
 }
+
 .link2 {
     display: inline-block; 
     color: #1c0d27; 
@@ -126,14 +102,14 @@ body {
     font-weight: bold; 
     text-align: center; 
     padding: 8px 130px; 
-    /* border-radius: 4px;  */
     transition: color 0.3s, background-color 0.3s; 
 }
+
 .link2:hover {
     color: #3b444c;
     text-decoration: underline; 
-    /* background-color: rgba(1, 7, 14, 0.1);  */
 }
+
 .link3 {
     display: inline; 
     color: #1c0d27; 
@@ -141,17 +117,14 @@ body {
     font-weight: bold; 
     text-align: center; 
     padding: 5px 450px; 
-    /* left: 450px; */
-    /* border-radius: 4px;  */
     transition: color 0.3s, background-color 0.3s; 
 }
+
 .link3:hover {
     color: #3b444c;
     text-decoration: underline; 
-    /* background-color: rgba(1, 7, 14, 0.1);  */
 }
 
-/* */
 .container2 {
     width: 100%;
     max-width: 1000px;
@@ -223,7 +196,6 @@ body {
     font-size: 12px;
     padding: 8px;
     text-align: center;
-
 }
 
 .container2 th, .container2 td {
@@ -236,13 +208,11 @@ body {
 
 .container2 th {
     background-color: #f2f2f2;
-
 }
 
 .container2 td {
     vertical-align: center;
-    background-color: rgb(155, 153, 153);
-    
+    background-color: rgb(155, 153, 153);    
 }
 
 table th:nth-child(1), td:nth-child(1) {
@@ -289,8 +259,6 @@ table th:nth-child(7), td:nth-child(7) {
     width:2%;
 }
 
-
-
 .notes-label:hover::after {
     content: attr(data-notes); /* Show full content */
     position: absolute;
@@ -323,7 +291,7 @@ table th:nth-child(7), td:nth-child(7) {
     min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    white-space: nowrap; /* Prevent wrapping of buttons */
+    white-space: nowrap;
 }
 
 .dropdown-content button {
@@ -332,17 +300,10 @@ table th:nth-child(7), td:nth-child(7) {
     cursor: pointer;
     font-size: 16px;
     padding: 5px;
-    display: inline-flex; /* Align items in a row */
+    display: inline-flex;
     align-items: center;
 }
 
-/* .add-entry-btn{
-    position :absolute;
-    right:140px;
-    top:160px;
-} */
-
-/* Icon button styles */
 .icon-button {
     background: none;
     border: none;
@@ -356,20 +317,19 @@ table th:nth-child(7), td:nth-child(7) {
 }
 
 .icon-button:hover {
-    color: #060c12; /* Dark text/icon color on hover */
-    background-color: transparent; /* No background color on hover */
+    color: #060c12; 
+    background-color: transparent; 
 }
 
-/* Show dropdown content on hover */
 .dropdown:hover .dropdown-content {
-    display: flex; /* Use flexbox to align items horizontally */
-}
+    display: flex; 
 
 .dropbtn {
     color:black;
     background-color: transparent;
     border-radius: 50%;
 }
+    
 .password-container {
     position: relative;
     display: flex;
@@ -391,15 +351,15 @@ table th:nth-child(7), td:nth-child(7) {
 
 
 #entries-table {
-    width: 100%; /* Ensure the table takes up the full width of the container */
-    table-layout: fixed; /* Ensure table columns have a fixed width */
-    border-collapse: collapse; /* Collapse borders for a cleaner look */
+    width: 100%;
+    table-layout: fixed; 
+    border-collapse: collapse; 
 }
 
 #entries-table th, #entries-table td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd; /* Add a border for better readability */
+    border-bottom: 1px solid #ddd;
 }
 
 .notes-label {
@@ -409,7 +369,7 @@ table th:nth-child(7), td:nth-child(7) {
 }
 
 .timer {
-    margin-top: -3px; /* Space above timer */
-    text-align: center; /* Center align timer text */
+    margin-top: -3px; 
+    text-align: center; 
     font-size: 12px;
 }
