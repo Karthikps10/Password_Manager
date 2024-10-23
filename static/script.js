@@ -126,13 +126,9 @@ function confirmEmail() {
     })
     .then(response => response.json())
     .then(data => {
-        alert(data.message);
         if (data.message === 'Password shared to email.') {
-            alert('Please reset your password to continue.')
+            alert('A temporary password has been sent to your email. Please reset it to continue.')
             window.location.href = '/reset';
-        }
-        else{
-            window.location.href = '/register';
         }
     })
     .catch(error => {
