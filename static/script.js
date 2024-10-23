@@ -91,7 +91,6 @@ function verify() {
             window.location.href = '/';
         } else if (data.message === "Invalid OTP") {
             alert(data.message);
-            window.location.href = '/';
         }
     })
     .catch(error => {
