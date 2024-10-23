@@ -80,7 +80,7 @@ def confirmEmail():
                 cursor = connect.cursor()
                 cursor.execute("UPDATE USERS SET Password = ? WHERE Email = ?", (password, email))
                 connect.commit()
-            return jsonify({'message': 'Password shared to email'}), 200
+            return jsonify({'message': 'Password shared to email.'}), 200
         else:
             return jsonify({'message': 'Invalid. Please register'}), 401
 
