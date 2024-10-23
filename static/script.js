@@ -61,6 +61,7 @@ function login() {
             window.location.href = '/OTP'; 
             //alert(data.message);
         } else {
+            window.location.href = '/';
             alert(data.message);
         }
     })
