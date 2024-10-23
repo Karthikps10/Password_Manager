@@ -37,6 +37,11 @@ function register() {
 function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const loginButton = document.getElementById('loginButton');
+    const loading = document.getElementById('loading');
+
+    loginButton.disabled = true;
+    loading.style.display = 'block';
 
     if (!email || !password) {
         alert('Email and Password are required.');
