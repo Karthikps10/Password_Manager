@@ -44,6 +44,8 @@ function login() {
     loading.style.display = 'block';
 
     if (!email || !password) {
+        loginButton.disabled = False;
+        loading.style.display = 'none';
         alert('Email and Password are required.');
         return;
     }
