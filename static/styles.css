@@ -374,3 +374,10 @@ table th:nth-child(7), td:nth-child(7) {
     text-align: center; 
     font-size: 12px;
 }
+
+.container h6 {
+    text-align: center;
+    font-family:'Lucida Sans';
+    color:#07030a99;
+    font-size : 12px ;
+}
