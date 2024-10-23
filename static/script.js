@@ -116,6 +116,8 @@ function confirmEmail() {
     confirm.disabled = true;
     loading.style.display = 'block';
     if (email === '') {
+        confirm.disabled = false;
+        loading.style.display = 'none';
         alert('Please enter your email.');
         return;
     } 
