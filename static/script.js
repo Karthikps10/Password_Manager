@@ -89,6 +89,8 @@ function verify() {
             window.location.href = '/main1';
         } else if (data.message === "OTP has expired. Log In again") {
             window.location.href = '/';
+        } else if (data.message === "Invalid OTP") {
+            window.location.href = '/';
         }
     })
     .catch(error => {
