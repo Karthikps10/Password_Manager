@@ -44,7 +44,7 @@ function login() {
     loading.style.display = 'block';
 
     if (!email || !password) {
-        loginButton.disabled = False;
+        loginButton.disabled = false;
         loading.style.display = 'none';
         alert('Email and Password are required.');
         return;
@@ -143,10 +143,7 @@ function confirmEmail() {
         console.error('Error:', error);
         alert('An error occurred. Please try again.');
     });
-
-
 }
-
 
 function reset(){
     window.location.href = '/reset';
