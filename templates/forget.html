@@ -11,7 +11,8 @@
         <h2>Forget Password</h2>
         <h6>Enter your email ID. You will receive an OTP if you're already registered. If you don't see it in your primary inbox, please check your spam folder.</h6>
         <input type="email" id="email" required placeholder="Email ID"><br><br>
-        <button onclick="confirmEmail()">Confirm</button>
+        <button id="confirm" onclick="confirmEmail()">Confirm</button>
+        <div id="loading" style="display:none;">Sending OTP...</div>
         <div class="links">
             <a href="{{ url_for('main') }}" class="link2">Back</a>
         </div>
