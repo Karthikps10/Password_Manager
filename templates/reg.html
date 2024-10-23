@@ -18,5 +18,24 @@
         </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.getElementById('email').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                register();
+            }
+        });
+
+        document.getElementById('name').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                register();
+            }
+        });
+
+        document.getElementById('password').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                register();
+            }
+        });
+    </script>
 </body>
 </html>
