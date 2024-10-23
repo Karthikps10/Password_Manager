@@ -131,6 +131,7 @@ function confirmEmail() {
             alert('A temporary password has been sent to your email. Please reset it to continue.')
             window.location.href = '/reset';
         } else {
+            window.location.href = '/forget';
             alert('Invalid email address')
         }
     })
