@@ -90,6 +90,7 @@ function verify() {
         } else if (data.message === "OTP has expired. Log In again") {
             window.location.href = '/';
         } else if (data.message === "Invalid OTP") {
+            alert(data.message);
             window.location.href = '/';
         }
     })
