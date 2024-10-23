@@ -130,6 +130,8 @@ function confirmEmail() {
         if (data.message === 'Password shared to email.') {
             alert('A temporary password has been sent to your email. Please reset it to continue.')
             window.location.href = '/reset';
+        } else {
+            alert('Invalid email address')
         }
     })
     .catch(error => {
