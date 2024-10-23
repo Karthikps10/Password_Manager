@@ -107,6 +107,11 @@ function verify() {
 // Function to handle email confirmation
 function confirmEmail() {
     const email = document.getElementById('email').value;
+    const confirm = document.getElementById('confirm');
+    const loading = document.getElementById('loading');
+
+    confirm.disabled = true;
+    loading.style.display = 'block';
     if (email === '') {
         alert('Please enter your email.');
         return;
