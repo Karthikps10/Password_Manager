@@ -147,11 +147,11 @@ def register_user():
             return jsonify({'message': 'Email already registered', 'success': False}), 400
 
 def send_otp(email, otp, message):
-    MESSAGE = f"""Subject: EMAIL VERIFICATION
+    MESSAGE = f"""Please Don't share your password.
 
     {message}: {otp}"""
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Your OTP"
+    msg['Subject'] = "EMAIL VERIFICATION"
     msg['From'] = FROM_EMAIL
     msg['To'] = email
     msg.attach(MIMEText(MESSAGE, 'plain'))
@@ -202,6 +202,9 @@ def reset_pass():
 
     if not email or not new_password or not password:
         return jsonify({'message': 'All fields are required'}), 400
+
+    if len(new_password) < 6:
+        return jsonify({'message': 'Password must be at least 6 characters long'}), 400
 
     with sqlite3.connect('Users.db') as connect:
         cursor = connect.cursor()
