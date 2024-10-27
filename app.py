@@ -65,6 +65,7 @@ def generate():
 def confirmEmail():
     data = request.get_json()
     email = data.get('email')
+    message = "Temporary password: "
     if not email:
         return jsonify({'message': 'Email is required'}), 400
     with sqlite3.connect('Users.db') as connect:
@@ -74,7 +75,7 @@ def confirmEmail():
         if result :
             password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
             session['email'] = email
-            send_otp(email, password)
+            send_otp(email, password, message)
             print(password)
             with sqlite3.connect('Users.db') as connect:
                 cursor = connect.cursor()
@@ -103,7 +104,7 @@ def login():
             session['otp'] = otp
             session['email'] = email
             session['otp_time'] = time.time() 
-            send_otp(email, otp)
+            send_otp(email, otp, message= "Your OTP")
             print(otp)
             return jsonify({'message': 'OTP sent successfully'}), 200           
         else:
@@ -145,10 +146,10 @@ def register_user():
         except sqlite3.IntegrityError:
             return jsonify({'message': 'Email already registered', 'success': False}), 400
 
-def send_otp(email, otp):
-    MESSAGE = f"""Subject: Your OTP
+def send_otp(email, otp, message):
+    MESSAGE = f"""Subject: EMAIL VERIFICATION
 
-    OTP: {otp}"""
+    {message}: {otp}"""
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Your OTP"
     msg['From'] = FROM_EMAIL
@@ -258,15 +259,12 @@ def add():
         password = request.form.get('password')
         link = request.form.get('link')
         notes = request.form.get('notes')
-        
-        # Construct the user database filename
         user_db_name = f'{email.replace("@", "_").replace(".", "_")}.db'
         if not os.path.exists(user_db_name):
             flash('User database does not exist.', 'error')
             return redirect(url_for('index')) 
         
         try:
-            # Insert the new entry into the user database
             with sqlite3.connect(user_db_name) as user_db:
                 user_db.execute('INSERT INTO user_data (site, username, password, link, notes) VALUES (?, ?, ?, ?, ?)',
                                 (site, username, password, link, notes))
@@ -341,5 +339,3 @@ def copy_to_clipboard():
 
 if __name__ == '__main__':
     app.run( host ='0.0.0.0', port = 8000)
-
-
