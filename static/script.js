@@ -40,8 +40,10 @@ function login() {
     const loginButton = document.getElementById('loginButton');
     const loading = document.getElementById('loading');
 
+
     loginButton.disabled = true;
     loading.style.display = 'block';
+
 
     if (!email || !password) {
         loginButton.disabled = false;
@@ -61,7 +63,6 @@ function login() {
     .then(data => {
         if (data.message === 'OTP sent successfully') {
             window.location.href = '/OTP'; 
-            //alert(data.message);
         } else {
             window.location.href = '/';
             alert(data.message);
@@ -91,9 +92,7 @@ function verify() {
     })
     .then(response => response.json())
     .then(data => {
-        //alert(data.message);
         if (data.message === 'OTP verified successfully') {
-            //
             window.location.href = '/main1';
         } else if (data.message === "OTP has expired. Log In again") {
             window.location.href = '/';
@@ -196,10 +195,10 @@ function togglePasswordVisibility(index) {
 
     if (passwordLabel.textContent === '.............') {
         passwordLabel.textContent = passwordHidden.value;
-        toggleButtonIcon.className = 'fa-regular fa-eye-slash'; // Change icon to eye-slash when password is visible
+        toggleButtonIcon.className = 'fa-regular fa-eye-slash'; 
     } else {
         passwordLabel.textContent = '.............';
-        toggleButtonIcon.className = 'fa-regular fa-eye'; // Change icon back to eye when password is hidden
+        toggleButtonIcon.className = 'fa-regular fa-eye'; 
     }
 }
 
@@ -228,7 +227,6 @@ function editEntry(site, username, password, link, notes) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                //alert('Entry updated successfully!');
                 location.reload(); 
             } else {
                 alert('Error updating entry: ' + data.message);
@@ -252,7 +250,6 @@ function deleteEntry(site) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                //alert('Entry deleted successfully!');
                 location.reload(); 
             } else {
                 alert('Error deleting entry: ' + data.message);
@@ -262,7 +259,6 @@ function deleteEntry(site) {
 }
 
 function copyToClipboard(text) {
-    // Create a temporary textarea element
     const textArea = document.createElement('textarea');
     textArea.value = text;  
     document.body.appendChild(textArea);  
@@ -321,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
     copyBtn.addEventListener('click', function() {
         passwordInput.select();
         document.execCommand('copy');
-        //alert('Password copied to clipboard');
     });
 });
 
