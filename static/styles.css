@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3f4f6; /* light gray */
+    background-color: #f3f4f6; 
     margin: 0;
     padding: 0;
 }
@@ -10,7 +10,7 @@ body {
     max-width: 300px;
     margin: 90px auto;
     padding: 20px;
-    background-color: #ffffff; /* white */
+    background-color: #ffffff; 
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -18,12 +18,12 @@ body {
 .container h2 {
     text-align: center;
     font-family: 'Lucida Sans';
-    color: #3c4a6b; /* dark slate blue */
+    color: #3c4a6b; 
 }
 
 .container label {
     display: block;
-    color: #333333; /* dark gray */
+    color: #333333; 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 5px;
     font-size: 13px;
@@ -37,7 +37,7 @@ body {
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-    border: 1px solid #d1d5db; /* light gray */
+    border: 1px solid #d1d5db; 
     border-radius: 40px;
     font-size: 14px;
 }
@@ -48,7 +48,7 @@ body {
     width: 95%;
     padding: 10px;
     margin: 10px 0;
-    background-color: #4a90e2; /* blue */
+    background-color: #4a90e2; 
     color: #fff;
     border: none;
     border-radius: 40px;
@@ -57,12 +57,12 @@ body {
 }
 
 .container button:hover {
-    background-color: #357ABD; /* darker blue */
+    background-color: #357ABD; 
 }
 
 .link {
     display: inline-block; 
-    color: #007BFF; /* blue */
+    color: #007BFF; 
     font-size: 13px; 
     font-weight: bold; 
     text-align: center; 
@@ -71,13 +71,13 @@ body {
 }
 
 .link:hover {
-    color: #0056b3; /* darker blue */
+    color: #0056b3; 
     text-decoration: underline; 
 }
 
 .link1 {
     display: inline-block; 
-    color: #007BFF; /* blue */
+    color: #007BFF; 
     font-size: 13px; 
     font-weight: bold; 
     text-align: center; 
@@ -86,13 +86,13 @@ body {
 }
 
 .link1:hover {
-    color: #0056b3; /* darker blue */
+    color: #0056b3; 
     text-decoration: underline; 
 }
 
 .link2 {
     display: inline-block; 
-    color: #007BFF; /* blue */
+    color: #007BFF;
     font-size: 13px; 
     font-weight: bold; 
     text-align: center; 
@@ -101,13 +101,13 @@ body {
 }
 
 .link2:hover {
-    color: #0056b3; /* darker blue */
+    color: #0056b3; 
     text-decoration: underline; 
 }
 
 .link3 {
     display: inline; 
-    color: #007BFF; /* blue */
+    color: #007BFF; 
     font-size: 13px; 
     font-weight: bold; 
     text-align: center; 
@@ -116,7 +116,7 @@ body {
 }
 
 .link3:hover {
-    color: #0056b3; /* darker blue */
+    color: #0056b3; 
     text-decoration: underline; 
 }
 
@@ -125,7 +125,7 @@ body {
     max-width: 1000px;
     margin: 90px auto;
     padding: 20px;
-    background-color: #ffffff; /* white */
+    background-color: #ffffff; 
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -133,12 +133,12 @@ body {
 .container2 h2 {
     text-align: center;
     font-family: 'Lucida Sans';
-    color: #3c4a6b; /* dark slate blue */
+    color: #3c4a6b; 
 }
 
 .container2 label {
     display: block;
-    color: #333333; /* dark gray */
+    color: #333333; 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 5px;
     font-size: 10px;
@@ -148,7 +148,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 40%;
     padding: 10px;
-    background-color: rgb(155, 153, 153); /* kept the same */
+    background-color: rgb(155, 153, 153); 
     margin: 5px 0;
     box-sizing: border-box;
     border: none;
@@ -162,7 +162,7 @@ body {
     text-align: center;
     padding: 10px 20px;
     margin: 10px 0px;
-    background-color: #4a90e2; /* blue */
+    background-color: #4a90e2; 
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -174,7 +174,7 @@ body {
 }
 
 .container2 button:hover {
-    background-color: #357ABD; /* darker blue */
+    background-color: #357ABD; 
 }
 
 .container2 table {
@@ -182,25 +182,25 @@ body {
     height: 6px;
     border-collapse: collapse;
     margin-bottom: 30px;
-    border: 1.5px solid #150505; /* kept the same */
+    border: 1.5px solid #150505; 
     font-size: 12px;
     padding: 8px;
     text-align: center;
 }
 
 .container2 th, .container2 td {
-    border: 1.5px solid #150505; /* kept the same */
+    border: 1.5px solid #150505; 
     padding: 2px 2px;
     text-align: center;
 }
 
 .container2 th {
-    background-color: #e7eff7; /* light blue */
+    background-color: #e7eff7; 
 }
 
 .container2 td {
     vertical-align: center;
-    background-color: #f8f9fa; /* very light gray */
+    background-color: #f8f9fa; 
 }
 
 table th:nth-child(1), td:nth-child(1) {
@@ -250,12 +250,12 @@ table th:nth-child(7), td:nth-child(7) {
 }
 
 .notes-label:hover::after {
-    content: attr(data-notes); /* Show full content */
+    content: attr(data-notes); 
     position: absolute;
     bottom: 30%;
     left: 60%;
-    background-color: rgb(190, 182, 182); /* kept the same */
-    color: #0d002c; /* kept the same */
+    background-color: rgb(190, 182, 182); 
+    color: #0d002c; 
     padding: 5px;
     border-radius: 5px;
     white-space: normal;
@@ -276,7 +276,7 @@ table th:nth-child(7), td:nth-child(7) {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: transparent; /* kept the same */
+    background-color: transparent; 
     border-radius: 10px;
     min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -307,8 +307,8 @@ table th:nth-child(7), td:nth-child(7) {
 }
 
 .icon-button:hover {
-    color: #060c12; /* kept the same */
-    background-color: transparent; /* kept the same */
+    color: #060c12;
+    background-color: transparent;
 }
 
 .dropdown:hover .dropdown-content {
@@ -316,9 +316,9 @@ table th:nth-child(7), td:nth-child(7) {
 }
 
 .dropbtn {
-    color: black; /* kept the same */
-    background-color: transparent; /* kept the same */
-    border-radius: 50%; /* kept the same */
+    color: black; 
+    background-color: transparent; 
+    border-radius: 50%; 
 }
 
 .password-container {
@@ -333,7 +333,7 @@ table th:nth-child(7), td:nth-child(7) {
     padding-right: 40px; 
     background: transparent; 
     border: none; 
-    color: black; /* kept the same */
+    color: black; 
     line-height: 1.5; 
     overflow: hidden; 
     white-space: nowrap; 
@@ -349,7 +349,7 @@ table th:nth-child(7), td:nth-child(7) {
 #entries-table th, #entries-table td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd; /* kept the same */
+    border-bottom: 1px solid #ddd; 
 }
 
 .notes-label {
@@ -361,12 +361,48 @@ table th:nth-child(7), td:nth-child(7) {
 .timer {
     margin-top: -3px; 
     text-align: center; 
-    font-size: 12px; /* kept the same */
+    font-size: 12px; 
 }
 
 .container h6 {
     text-align: center;
     font-family: 'Lucida Sans';
-    color: #3c4a6b; /* dark slate blue */
-    font-size: 12px; /* kept the same */
+    color: #3c4a6b; 
+    font-size: 12px; 
+}
+/*  */
+
+.loader {
+    display: flex;
+    align-items: center; 
+    margin-left: 100px;
+    margin-top: 10px ;
+    background-color: #ffffff;
+}
+
+.ball {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #3498db;
+    margin: 0 5px;
+    margin-bottom: 10px ;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.ball:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.ball:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(30px); 
+    }
 }
