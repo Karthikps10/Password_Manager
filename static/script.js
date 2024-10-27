@@ -78,8 +78,10 @@ function login() {
 // Function to handle OTP verification
 function verify() {
     const otp = document.getElementById('otp').value;
-
+    const loading = document.getElementById('loading')
+    loading.style.display = 'block';
     if (!otp) {
+        loading.style.display = 'none';
         alert('Email and OTP are required.');
         return;
     }
@@ -98,6 +100,7 @@ function verify() {
         } else if (data.message === "OTP has expired. Log In again") {
             window.location.href = '/';
         } else if (data.message === "Invalid OTP") {
+            loading.style.display = 'none';
             alert(data.message);
         }
     })
@@ -112,7 +115,7 @@ function confirmEmail() {
     const email = document.getElementById('email').value;
     const confirm = document.getElementById('confirm');
     const loading = document.getElementById('loading');
-
+    
     confirm.disabled = true;
     loading.style.display = 'block';
     if (email === '') {
