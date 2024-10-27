@@ -12,7 +12,13 @@
         <h6>Enter your email ID. You will receive a temporary password if you're already registered. If you don't see it in your primary inbox, please check your spam folder.</h6>
         <input type="email" id="email" required placeholder="Email ID"><br><br>
         <button id="confirm" onclick="confirmEmail()">Confirm</button>
-        <div id="loading" style="display:none;"><h6>Sending OTP...</h6></div>
+        <div id="loading" style="display:none;"><h6>
+            <div class="loader">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div></h6>
+        </div>
         <div class="links">
             <a href="{{ url_for('main') }}" class="link2">Back</a>
         </div>
