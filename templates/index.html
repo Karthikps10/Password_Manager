@@ -12,7 +12,13 @@
         <input type="email" id="email" required placeholder="Email ID"><br><br>
         <input type="password" id="password" required placeholder="Password"><br><br>
         <button id="loginButton" onclick="login()">Log In</button>
-        <div id="loading" style="display:none;"><h6>Sending OTP...</h6></div>
+        <div id="loading" style="display:none;"><h6>
+            <div class="loader">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div></h6>
+        </div>
         <div class="links">
             <a href="{{ url_for('register') }}" class="link">Register</a>
             <a href="{{ url_for('forget') }}" class="link">Forgot Password?</a>
