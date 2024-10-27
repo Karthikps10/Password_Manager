@@ -13,6 +13,13 @@
         <input type="text" id="otp" required placeholder="Enter OTP"><br>
         <button onclick="verify()">Verify OTP</button>
         <div id="timer" class="timer"></div>
+               <div id="loading" style="display:none;"><h6>
+            <div class="loader">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div></h6>
+        </div>
         <div class="links">
             <a href="{{ url_for('index') }}" class="link2">Back</a>
         </div>
