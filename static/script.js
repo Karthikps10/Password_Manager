@@ -159,7 +159,7 @@ function reset_password() {
         return;
     }
 
-    if (password.length < 6) {
+    if (new_password.length < 6) {
         alert('Password must be at least 6 characters long.');
         return;
     }
