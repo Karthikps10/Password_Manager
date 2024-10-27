@@ -8,6 +8,7 @@ function register() {
         alert('All fields are required.');
         return;
     }
+    
     if (password.length < 6) {
         alert('Password must be at least 6 characters long.');
         return;
@@ -156,6 +157,11 @@ function reset_password() {
 
     if (!email || !new_password || !password) {
         alert('All fields are required.');
+        return;
+    }
+    
+    if (new_password === password) {
+        alert('New password should not be same as current password');
         return;
     }
 
