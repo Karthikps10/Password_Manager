@@ -222,36 +222,7 @@ function togglePasswordVisibility(index) {
 }
 
 function editEntry(site, username, password, link, notes) {
-    const newsite = prompt('Enter new Title:', site)
-    const newUsername = prompt('Enter new Username:', username);
-    const newPassword = prompt('Enter new Password:', password);
-    const newLink = prompt('Enter new Link:', link);
-    const newNotes = prompt('Enter new Notes:', notes);
-
-    if (newsite !== null && newUsername !== null && newPassword !== null) {
-        fetch('/edit_entry', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                oldsite : site,
-                newsite: newsite,
-                username: newUsername,
-                password: newPassword,
-                link: newLink,
-                notes: newNotes
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                location.reload(); 
-            } else {
-                alert('Error updating entry: ' + data.message);
-            }
-        });
-    }
+    window.location.href = `/edit_entry/${site}`;
 }
 
 // Delete Entry
