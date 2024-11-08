@@ -161,16 +161,14 @@ body {
     display: block;
     text-align: center;
     padding: 10px 20px;
-    margin: 10px 0px;
+    margin: 10px;
     background-color: #4a90e2; 
     color: #ffffff;
     border: none;
     border-radius: 10px;
     font-size: 12px;
     cursor: pointer;
-    position: absolute;
-    right: 140px;
-    top: 160px;
+    margin-left: 879px
 }
 
 .container2 button:hover {
