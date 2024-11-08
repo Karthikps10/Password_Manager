@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Password Entry</h2>
+        <form action="{{ url_for('edit_entry', site=entry.site) }}" method="post">
+            <input type="text" id="site" name="site" placeholder="Title" value="{{ entry.site }}" required><br>
+            <input type="text" id="username" name="username" placeholder="Username" value="{{ entry.username }}" required><br>
+            <input type="text" id="password" name="password" placeholder="Password" value="{{ entry.password }}" required><br>
+            <input type="text" id="link" name="link" placeholder="Link" value="{{ entry.link }}"><br>
+            <input type="text" id="notes" name="notes" placeholder="Notes" value="{{ entry.notes }}"><br><br>
+            <button type="submit">Save Changes</button>            
+        </form>
+        <a href="{{ url_for('main') }}" class="link2">Back</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('site').focus();
+        };
+        document.getElementById('password').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                new_entry();
+            }
+        });
+        document.getElementById('notes').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                new_entry();
+            }
+        });
+    </script>
+</body>
+</html>
