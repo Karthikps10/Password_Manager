@@ -281,36 +281,56 @@ def add():
             return redirect(url_for('main')) 
     return render_template('add.html')
 
-@app.route('/edit_entry', methods=['POST'])
-def edit_entry():
+@app.route('/edit_entry/<site>', methods=['GET', 'POST'])
+def edit_entry(site):
     email = session.get('email')
     if not email:
-        return redirect(url_for('index'))
-
-    data = request.json
-    old_site = data.get('oldsite')
-    new_site = data.get('newsite')
-    username = data.get('username')
-    password = data.get('password')
-    link = data.get('link')
-    notes = data.get('notes')
+        return redirect(url_for('index'))  # Redirect to login page if not logged in
 
     user_db_name = f'{email.replace("@", "_").replace(".", "_")}.db'
+    if request.method == 'GET':
+        try:
+            with sqlite3.connect(user_db_name) as user_db:
+                cursor = user_db.cursor()
+                cursor.execute('''SELECT site, username, password, link, notes 
+                                  FROM user_data WHERE site = ?''', (site,))
+                entry = cursor.fetchone()
 
-    try:
-        with sqlite3.connect(user_db_name) as user_db:
-            cursor = user_db.cursor()
-            cursor.execute('''
-                UPDATE user_data
-                SET site = ?, username = ?, password = ?, link = ?, notes = ?
-                WHERE site = ?
-            ''', (new_site, username, password, link, notes, old_site))
-            user_db.commit()
-    except sqlite3.Error as e:
-        print(f"Database error: {e}")
-        return jsonify({'status': 'error', 'message': 'Database error occurred'}), 500
+                if entry:
+                    # Render the edit form with the current data
+                    return render_template('edit_entry.html', entry={
+                        'site': entry[0],
+                        'username': entry[1],
+                        'password': entry[2],
+                        'link': entry[3],
+                        'notes': entry[4]
+                    })
+                else:
+                    return redirect(url_for('main'))  
 
-    return jsonify({'status': 'success'})
+        except sqlite3.Error as e:
+            print(f"Database error: {e}")
+            return redirect(url_for('main')) 
+    elif request.method == 'POST':
+        new_site = request.form['site']
+        new_username = request.form['username']
+        new_password = request.form['password']
+        new_link = request.form['link']
+        new_notes = request.form['notes']
+
+        try:
+            with sqlite3.connect(user_db_name) as user_db:
+                cursor = user_db.cursor()
+                cursor.execute('''UPDATE user_data
+                                  SET site = ?, username = ?, password = ?, link = ?, notes = ?
+                                  WHERE site = ?''', 
+                               (new_site, new_username, new_password, new_link, new_notes, site))
+                user_db.commit()
+            return redirect(url_for('main'))
+
+        except sqlite3.Error as e:
+            print(f"Database error: {e}")
+            return "Error updating entry", 500
 
 @app.route('/delete_entry', methods=['POST'])
 def delete_entry():
