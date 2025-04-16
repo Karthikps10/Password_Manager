@@ -1,4 +1,4 @@
-// Function to handle user registration
+// Function to handle user registration.
 function register() {
     const email = document.getElementById('email').value;
     const name = document.getElementById('name').value;
