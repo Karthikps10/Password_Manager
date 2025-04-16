@@ -145,7 +145,7 @@ def register_user():
             return jsonify({'message': 'Registration successful', 'success': True}), 200
         except sqlite3.IntegrityError:
             return jsonify({'message': 'Email already registered', 'success': False}), 400
-
+//update
 def send_otp(email, otp, message):
     MESSAGE = f"""Please Don't share your password.
 
